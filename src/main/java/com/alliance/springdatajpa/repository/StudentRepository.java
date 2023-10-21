@@ -1,7 +1,9 @@
 package com.alliance.springdatajpa.repository;
 
 import com.alliance.springdatajpa.entity.Student;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
   public List<Student> findByFirstNameContaining(String name);
 
   //using sql queries(JPQL)
+  //named queries
   @Query("SELECT s FROM Student s WHERE s.guardian.name = :name ")
   public List<Student> findByGuardian(String name);
 
@@ -27,6 +30,16 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     nativeQuery = true
   )
   public Student getStudentByEmailAddressNative(String email);
+
+//  used when defining record modifying quries
+  @Modifying
+  @Transactional
+  @Query(
+    value = "UPDATE tbl_student SET first_name = ?1 WHERE email_address = ?2",
+    nativeQuery = true
+  )
+  public void updateStudentFirstNameByEmail(String name, String email);
+
 
 
  }
