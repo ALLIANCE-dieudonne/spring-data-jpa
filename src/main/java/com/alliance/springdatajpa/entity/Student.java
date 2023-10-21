@@ -2,8 +2,6 @@ package com.alliance.springdatajpa.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,9 +19,9 @@ import lombok.NoArgsConstructor;
     name = "unique_email",
     columnNames = "email_address"
   )
-
 )
 public class Student {
+
   @Id
   @SequenceGenerator(
     name = "student_sequence",
@@ -34,27 +32,28 @@ public class Student {
     strategy = GenerationType.SEQUENCE,
     generator = "student_sequence"
   )
+  @Column(name = "student_id")
   private Long studentId;
 
+  @NotNull(message = "The first name should not be empty!")
+  @Column(name = "first_name", nullable = false)
+  private String firstName;
 
-  @NotNull(message = "The name should not be empty!")
-  @Min(10)
-  @Max(25)
-  private String fName;
+  @NotNull(message = "The last name should not be empty!")
+  @Column(name = "last_name", nullable = false)
+  private String lastName;
 
-  @NotNull(message = "The name should not be empty!")
-  @Min(10)
-  @Max(25)
-  private String lName;
-
-  @Column(name = "email_address", nullable = false)
+  @Column(name = "email_address", nullable = false, unique = true)
   private String emailId;
+
+  @Column(name = "guardian_name")
   private String guardianName;
 
   @Email(message = "Enter a valid email")
+  @Column(name = "guardian_email")
   private String guardianEmail;
 
+  @Column(name = "guardian_mobile")
   private String guardianMobile;
-
 
 }
