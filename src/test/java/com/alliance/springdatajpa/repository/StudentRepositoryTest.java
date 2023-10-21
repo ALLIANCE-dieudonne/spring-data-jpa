@@ -77,4 +77,9 @@ class StudentRepositoryTest {
     System.out.println(studentRepository.findByGuardianEmail("g@gmail.com"));
   }
 
+  @Test
+  public void getStudentByEmailAddressUsingNativeQuery(){
+    System.out.println(studentRepository.getStudentByEmailAddressNative("abayo@gmail.co"));
+  }
+
 }

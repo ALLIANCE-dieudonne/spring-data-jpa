@@ -21,4 +21,12 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
   public List<Student> findByLastNameNotNull();
 
   public List<Student> findByGuardianEmail(String email);
+
+  @Query(
+    value = "SELECT * FROM tbl_student s WHERE s.email_address = ?1",
+    nativeQuery = true
+  )
+  public Student getStudentByEmailAddressNative(String email);
+
+
  }
