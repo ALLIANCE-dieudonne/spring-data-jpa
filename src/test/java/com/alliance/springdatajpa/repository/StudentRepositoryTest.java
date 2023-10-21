@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.security.Guard;
 import java.util.List;
 
 @SpringBootTest
@@ -16,7 +15,7 @@ class StudentRepositoryTest {
   private StudentRepository studentRepository;
 
   @Test
-  public void saveStudent(){
+  public void saveStudent() {
     Student student = Student.builder()
       .emailId("fil@gmail.com")
       .firstName("fils")
@@ -31,7 +30,7 @@ class StudentRepositoryTest {
   }
 
   @Test
-  public void saveStudentWithGuardian(){
+  public void saveStudentWithGuardian() {
 
     Guardian guardian = Guardian.builder()
       .email("char@gmail.c")
@@ -51,10 +50,31 @@ class StudentRepositoryTest {
   }
 
   @Test
-  public void getAllStudents(){
+  public void getAllStudents() {
     List<Student> students = studentRepository.findAll();
 
     System.out.println(students);
+  }
+
+  @Test
+  public void getStudentByName() {
+    List<Student> student = studentRepository.findByFirstName("fils");
+    System.out.println(student);
+  }
+
+  @Test
+  public void getStudentByGuardianName(){
+    System.out.println(studentRepository.findByGuardian("kibwa"));
+  }
+
+  @Test
+  public void getStudentWhoseFirstNameContainsCharacter_s() {
+    System.out.println(studentRepository.findByFirstNameContaining("fil"));
+  }
+
+  @Test
+  public void getStudentByGuardianEmail(){
+    System.out.println(studentRepository.findByGuardianEmail("g@gmail.com"));
   }
 
 }
