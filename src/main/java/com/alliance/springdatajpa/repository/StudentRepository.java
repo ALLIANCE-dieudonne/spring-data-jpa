@@ -31,7 +31,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
   )
   public Student getStudentByEmailAddressNative(String email);
 
-//  used when defining record modifying quries
+//  used when defining record modifying queries
   @Modifying
   @Transactional
   @Query(
