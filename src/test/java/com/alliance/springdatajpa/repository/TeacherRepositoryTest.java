@@ -18,11 +18,11 @@ class TeacherRepositoryTest {
   public void saveTeacher(){
 
     Course course = Course.builder()
-      .title("chem")
+      .title("bio")
       .credit(1)
       .build();
     Course course2 = Course.builder()
-      .title("his")
+      .title("geo")
       .credit(1)
       .build();
     Teacher teacher = Teacher.builder()
