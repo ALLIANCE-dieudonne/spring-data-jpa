@@ -2,6 +2,7 @@ package com.alliance.springdatajpa.repository;
 
 import com.alliance.springdatajpa.entity.Course;
 import com.alliance.springdatajpa.entity.CourseMaterial;
+import com.alliance.springdatajpa.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +16,7 @@ class CourseMaterialRepositoryTest {
   private CourseMaterialRepository courseMaterialRepository;
 
   @Test
-  public void saveCourseMaterial(){
+  public void saveCourseMaterial() {
 
     Course course = Course.builder()
       .title("math")
@@ -32,7 +33,7 @@ class CourseMaterialRepositoryTest {
   }
 
   @Test
-  public void printAllCourseMaterial(){
+  public void printAllCourseMaterial() {
     List<CourseMaterial> courseMaterials = courseMaterialRepository.findAll();
 
     System.out.println(courseMaterials);

@@ -30,13 +30,13 @@ public class Teacher {
   private String fName;
   private String lName;
 
-  @OneToMany(
-    cascade = CascadeType.ALL,
-    fetch = FetchType.LAZY
-  )
-  @JoinColumn(
-    name = "teacher_id",
-    referencedColumnName = "teacherId"
-  )
-  private List<Course> courses;
+//  @OneToMany(
+//    cascade = CascadeType.ALL,
+//    fetch = FetchType.LAZY
+//  )
+//  @JoinColumn(
+//    name = "teacher_id",
+//    referencedColumnName = "teacherId"
+//  )
+//  private List<Course> courses;
 }

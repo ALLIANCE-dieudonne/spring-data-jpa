@@ -28,7 +28,7 @@ class TeacherRepositoryTest {
     Teacher teacher = Teacher.builder()
       .fName("fils")
       .lName("dios")
-      .courses(List.of(course, course2))
+//      .courses(List.of(course, course2))
       .build();
 
     teacherRepository.save(teacher);

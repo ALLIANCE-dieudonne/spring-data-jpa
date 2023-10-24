@@ -28,4 +28,13 @@ public class Course {
   private String title;
   private int credit;
 
+  @ManyToOne(
+    cascade = CascadeType.ALL
+  )
+  @JoinColumn(
+    name = "teacher_id",
+    referencedColumnName = "teacherId"
+  )
+  private Teacher teacher;
+
 }
