@@ -5,26 +5,25 @@ import com.alliance.springdatajpa.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
-class CourseRepositoryTest
-{
+class CourseRepositoryTest {
   @Autowired
- private CourseRepository courseRepository;
+  private CourseRepository courseRepository;
 
   @Test
-  public void getAllCourses(){
+  public void getAllCourses() {
     List<Course> courses = courseRepository.findAll();
     System.out.println(courses);
 
   }
 
   @Test
-  public void saveCourseWithTeacher(){
+  public void saveCourseWithTeacher() {
     Teacher teacher = Teacher.builder()
       .fName("kagabo")
       .lName("Eric")
@@ -38,5 +37,24 @@ class CourseRepositoryTest
 
     courseRepository.save(course);
   }
+
+  @Test
+  public void findAllPagination() {
+    PageRequest firstPageWithThreeRecords =
+      PageRequest.of(0, 3);
+
+    Pageable secondPageWithTwoRequests =
+      PageRequest.of(1, 2);
+
+    List<Course> courses =
+      courseRepository.findAll(secondPageWithTwoRequests).getContent();
+
+    Long totalElements = courseRepository.findAll(secondPageWithTwoRequests).getTotalElements();
+
+    Long totalPages = (long) courseRepository.findAll(secondPageWithTwoRequests).getTotalPages();
+
+    System.out.println(courses);
+  }
+
 
 }
